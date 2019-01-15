@@ -142,7 +142,9 @@
     <Compile Include="Controls\Layout.cs" />
     <Compile Include="IHostResourceProvider.cs" />
     <Compile Include="HostResourceProvider.cs" />
+    <Compile Include="Controls\ObjectEditorControl.cs" />
     <Compile Include="Controls\TypeSelectorControl.cs" />
+    <Compile Include="Controls\TypeSelectorWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />

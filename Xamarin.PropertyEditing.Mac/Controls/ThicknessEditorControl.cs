@@ -13,29 +13,28 @@ namespace Xamarin.PropertyEditing.Mac
 		public CommonThicknessEditorControl (IHostResourceProvider hostResources)
 			: base (hostResources)
 		{
-			XLabel.Frame = new CGRect (28, 28, 50, 22);
-			XLabel.Font = NSFont.FromFontName (DefaultFontName, DefaultDescriptionLabelFontSize);
 			XLabel.StringValue = "LEFT";
 
 			XEditor.Frame = new CGRect (0, 46, 90, 20);
 
-			YLabel.Frame = new CGRect (160, 28, 45, 22);
-			YLabel.Font = NSFont.FromFontName (DefaultFontName, DefaultDescriptionLabelFontSize);
 			YLabel.StringValue = "TOP";
 
 			YEditor.Frame = new CGRect (132, 46, 90, 20);
 
-			WidthLabel.Frame = new CGRect (24, -5, 50, 22);
-			WidthLabel.Font = NSFont.FromFontName (DefaultFontName, DefaultDescriptionLabelFontSize);
 			WidthLabel.StringValue = "RIGHT";
 
 			WidthEditor.Frame = new CGRect (0, 13, 90, 20);
 
-			HeightLabel.Frame = new CGRect (150, -5, 50, 22);
-			HeightLabel.Font = NSFont.FromFontName (DefaultFontName, DefaultDescriptionLabelFontSize);
 			HeightLabel.StringValue = "BOTTOM";
 
 			HeightEditor.Frame = new CGRect (132, 13, 90, 20);
+
+			this.AddConstraints (new[] {
+				NSLayoutConstraint.Create (XLabel, NSLayoutAttribute.Left, NSLayoutRelation.Equal, XEditor, NSLayoutAttribute.CenterX, 1f, -17f),
+				NSLayoutConstraint.Create (YLabel, NSLayoutAttribute.Left, NSLayoutRelation.Equal, YEditor, NSLayoutAttribute.CenterX, 1f, -14f),
+				NSLayoutConstraint.Create (WidthLabel, NSLayoutAttribute.Left, NSLayoutRelation.Equal, WidthEditor, NSLayoutAttribute.CenterX, 1f, -22f),
+				NSLayoutConstraint.Create (HeightLabel, NSLayoutAttribute.Left, NSLayoutRelation.Equal, HeightEditor, NSLayoutAttribute.CenterX, 1f, -27f),
+			});
 		}
 
 		public override nint GetHeight (EditorViewModel vm)

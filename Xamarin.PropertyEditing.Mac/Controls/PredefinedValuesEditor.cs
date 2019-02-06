@@ -113,7 +113,7 @@ namespace Xamarin.PropertyEditing.Mac
 
 					this.AddConstraints (new[] {
 						NSLayoutConstraint.Create (this.comboBox, NSLayoutAttribute.Top, NSLayoutRelation.Equal, this, NSLayoutAttribute.Top, 1f, 0f),
-						NSLayoutConstraint.Create (this.comboBox, NSLayoutAttribute.Left, NSLayoutRelation.Equal, this, NSLayoutAttribute.Left, 1f, 0f),
+						NSLayoutConstraint.Create (this.comboBox, NSLayoutAttribute.Left, NSLayoutRelation.Equal, this, NSLayoutAttribute.Left, 1f, -1f),
 						NSLayoutConstraint.Create (this.comboBox, NSLayoutAttribute.Width, NSLayoutRelation.Equal, this, NSLayoutAttribute.Width, 1f, -34f),
 						NSLayoutConstraint.Create (this.comboBox, NSLayoutAttribute.Height, NSLayoutRelation.Equal, 1f, DefaultControlHeight),
 					});

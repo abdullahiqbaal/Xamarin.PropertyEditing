@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using AppKit;
 using CoreGraphics;
@@ -13,17 +13,18 @@ namespace Xamarin.PropertyEditing.Mac
 		public PointEditorControl (IHostResourceProvider hostResources)
 			: base (hostResources)
 		{
-			XLabel.Frame = new CGRect (34, -5, 25, 22);
-			XLabel.Font = NSFont.FromFontName (DefaultFontName, DefaultDescriptionLabelFontSize); // TODO: Washed-out color following specs
 			XLabel.StringValue = "X"; // TODO Localise
 
 			XEditor.Frame = new CGRect (0, 13, 90, 20);
-
-			YLabel.Frame = new CGRect (166, -5, 25, 22);
-			YLabel.Font = NSFont.FromFontName (DefaultFontName, DefaultDescriptionLabelFontSize); // TODO: Washed-out color following specs
+			
 			YLabel.StringValue = "Y"; // TODO Localise
 
 			YEditor.Frame = new CGRect (132, 13, 90, 20);
+
+			this.AddConstraints (new[] {
+				NSLayoutConstraint.Create (XLabel, NSLayoutAttribute.Left, NSLayoutRelation.Equal, XEditor, NSLayoutAttribute.CenterX, 1f, -10f),
+				NSLayoutConstraint.Create (YLabel, NSLayoutAttribute.Left, NSLayoutRelation.Equal, YEditor, NSLayoutAttribute.CenterX, 1f, -10f),
+			});
 		}
 
 		public override nint GetHeight (EditorViewModel vm)

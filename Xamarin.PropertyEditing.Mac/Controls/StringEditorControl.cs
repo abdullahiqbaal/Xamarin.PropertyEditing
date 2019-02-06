@@ -58,11 +58,6 @@ namespace Xamarin.PropertyEditing.Mac
 				this.inputModePopup.SelectItem ((ViewModel.InputMode == null) ? string.Empty : ViewModel.InputMode.Identifier);
 		}
 
-		protected override void HandleErrorsChanged (object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
-		{
-			UpdateErrorsDisplayed (ViewModel.GetErrors (ViewModel.Property.Name));
-		}
-
 		protected override void OnViewModelChanged (PropertyViewModel oldModel)
 		{
 			base.OnViewModelChanged (oldModel);
@@ -106,16 +101,6 @@ namespace Xamarin.PropertyEditing.Mac
 			// If we are reusing the control we'll have to hid the inputMode if this doesn't have InputMode.
 			if (this.inputModePopup != null)
 				this.inputModePopup.Hidden = !ViewModel.HasInputModes;
-		}
-
-		protected override void UpdateErrorsDisplayed (IEnumerable errors)
-		{
-			if (ViewModel.HasErrors) {
-				SetErrors (errors);
-			} else {
-				SetErrors (null);
-				SetEnabled ();
-			}
 		}
 
 		protected override void SetEnabled ()

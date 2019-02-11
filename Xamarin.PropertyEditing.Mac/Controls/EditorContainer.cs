@@ -1,5 +1,7 @@
 using System;
 using AppKit;
+using CoreGraphics;
+using Foundation;
 
 namespace Xamarin.PropertyEditing.Mac
 {
@@ -27,7 +29,7 @@ namespace Xamarin.PropertyEditing.Mac
 
 				this.AddConstraints (new[] {
 					NSLayoutConstraint.Create (EditorView.NativeView, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, this, NSLayoutAttribute.CenterY, 1f, 0f),
-					NSLayoutConstraint.Create (EditorView.NativeView, NSLayoutAttribute.Left, NSLayoutRelation.Equal, this.label, NSLayoutAttribute.Right, 1f, 5f),
+					NSLayoutConstraint.Create (EditorView.NativeView, NSLayoutAttribute.Left, NSLayoutRelation.Equal, this.label, NSLayoutAttribute.Right, 1f, this.labelToControlSpacing),
 					NSLayoutConstraint.Create (EditorView.NativeView, NSLayoutAttribute.Right, NSLayoutRelation.Equal, this, NSLayoutAttribute.Right, 1f, 0f),
 					NSLayoutConstraint.Create (EditorView.NativeView, NSLayoutAttribute.Height, NSLayoutRelation.Equal, this, NSLayoutAttribute.Height, 1f, 0f)
 				});
@@ -40,7 +42,10 @@ namespace Xamarin.PropertyEditing.Mac
 
 		public string Label {
 			get { return this.label.StringValue; }
-			set { this.label.StringValue = value; }
+			set {
+				this.label.StringValue = value + ":";
+				this.label.ToolTip = value;
+			}
 		}
 
 		private UnfocusableTextField label = new UnfocusableTextField {
@@ -55,5 +60,6 @@ namespace Xamarin.PropertyEditing.Mac
 #endif
 
 		private readonly IHostResourceProvider hostResources;
+		private nfloat labelToControlSpacing = 5f;
 	}
 }
